@@ -48,18 +48,18 @@ body{
     transition: background-color 0.2s;
 }
 
-.op-container{
+#op-container{
     display: flex;
     flex-direction: column;
     gap: 0px;
 }
 
-.op-container button:hover{
+#op-container button:hover{
     background: rgb(73, 60, 34);
     transition: background-color 0.2s;
 }
 
-.op-container button{
+#op-container button{
     color: white;
     border: none;
     background: rgb(110, 90, 51);
