@@ -14,6 +14,7 @@ body{
     display: flex;
     width: 260px;
     height: 260px;
+    
 }
 
 .display {
@@ -22,20 +23,29 @@ body{
     height: 120px;
 }
 
-.num-container {
+#num-container {
     width: 380px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: end;
     gap: 0px;
+    
 }
 
-.num-container div{
+#num-container button{
     background: rgb(51, 51, 110);
+    border: none;
     width: 66.6px;
     height: 65px;
     text-align: center;
     align-content: center;
+    color: white;
+    
+}
+
+#num-container button:hover{
+    background: rgb(33, 33, 72);
+    transition: background-color 0.2s;
 }
 
 .op-container{
@@ -44,7 +54,14 @@ body{
     gap: 0px;
 }
 
-.op-container div{
+.op-container button:hover{
+    background: rgb(73, 60, 34);
+    transition: background-color 0.2s;
+}
+
+.op-container button{
+    color: white;
+    border: none;
     background: rgb(110, 90, 51);
     width: 60px;
     height: 60px;
