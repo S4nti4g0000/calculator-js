@@ -17,10 +17,34 @@ body{
     
 }
 
-.display {
+#display {
     background: white;
+    color: black;
     width: 260px;
     height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+#display div {
+    display: flex;
+    border: 1px black solid;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#operand{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#equal{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #num-container {
