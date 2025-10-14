@@ -1,5 +1,6 @@
-let valueA
-let valueB
+let valueA = 0
+let valueB = 0
+let tempVal = []
 let operatorInput
 
 let isSecondValue = false
@@ -16,45 +17,45 @@ numbers.forEach(button => {
         
         switch(content){
             case '0': 
-                isSecondValue ? valueB = 0 : valueA = 0
+                tempVal.push(0)
                 break;
             case '1':
-                isSecondValue ? valueB = 1 : valueA = 1      
+                tempVal.push(1)    
                 break;
             case '2':
-                isSecondValue ? valueB = 2 : valueA = 2 
+                tempVal.push(2)
                 break;
             case '3':    
-                isSecondValue ? valueB = 3 : valueA = 3            
+                tempVal.push(3)           
                 break;
             case '4':  
-                isSecondValue ? valueB = 4 : valueA = 4
+                tempVal.push(4)
                 break;
             case '5':
-                isSecondValue ? valueB = 5 : valueA = 5
+                tempVal.push(5)
                 break;
             case '6':
-                isSecondValue ? valueB = 6 : valueA = 6
+                tempVal.push(6)
                 break;
             case '7':
-                isSecondValue ? valueB = 7 : valueA = 7
+                tempVal.push(7)
                 break;
             case '8':
-                isSecondValue ? valueB = 8 : valueA = 8     
+                tempVal.push(8)
                 break;
             case '9':
-                isSecondValue ? valueB = 9 : valueA = 9
+                tempVal.push(9)
                 break;
             case 'AC': 
-                valueA = 0
-                valueB = 0 
-                operatorInput = ""              
+                clear()     
                 break;
         }
 
         if(isSecondValue){
+            valueB = +tempVal.join('')
             document.getElementById("numTwo").textContent = `${valueB}`
         }else {
+            valueA = +tempVal.join('')
             document.getElementById("numOne").textContent = `${valueA}`
         }
     })
@@ -64,7 +65,7 @@ operands.forEach(button => {
     button.addEventListener("click", (ev) =>{
         let tar = ev.target
         let content = tar.textContent.trim()
-
+        tempVal = []
         switch(content){
             case '+':
                 isSecondValue = true
@@ -108,13 +109,27 @@ const divide = (...args) => {
 }
 
 function operate(valA, valB, operator){
+    let result
     if(operator === '+'){
-        document.getElementById("result").textContent = sum(valA,valB)
+        result = sum(valA,valB)
     }else if (operator === '-'){
-        document.getElementById("result").textContent = subtract(valA,valB)
+        result = subtract(valA,valB)
     }else if (operator === '*'){
-        document.getElementById("result").textContent = multiply(valA,valB)
+        result = multiply(valA,valB)
     }else if (operator === '/'){
-        document.getElementById("result").textContent = divide(valA,valB)
+        result = divide(valA,valB)
     }
+    document.getElementById("result").textContent = result
+}
+
+const clear = () => {
+    valueA = 0
+    valueB = 0 
+    tempVal = []
+    operatorInput = ""     
+    isSecondValue = false  
+    document.getElementById("operand").textContent = operatorInput
+    document.getElementById("numTwo").textContent = `${valueB}`
+    document.getElementById("numOne").textContent = `${valueA}`
+    document.getElementById("result").textContent = ''
 }
