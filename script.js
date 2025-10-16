@@ -1,19 +1,24 @@
 let valueA = 0
 let valueB = 0
 let tempVal = []
+
+let operatorContainer = []
 let operatorInput
 
 let isSecondValue = false
+let isEqual = false
 
 const numDisplay = document.getElementById("display")
 const numbers = document.getElementById("num-container").querySelectorAll("button")
 const operands = document.getElementById("op-container").querySelectorAll("button")
 
 
+
 numbers.forEach(button => {
     button.addEventListener("click", (ev) => {
         let tar = ev.target
         let content = tar.textContent.trim()
+        
         
         switch(content){
             case '0': 
@@ -50,7 +55,6 @@ numbers.forEach(button => {
                 clear()     
                 break;
         }
-
         if(isSecondValue){
             valueB = +tempVal.join('')
             document.getElementById("numTwo").textContent = `${valueB}`
@@ -66,29 +70,45 @@ operands.forEach(button => {
         let tar = ev.target
         let content = tar.textContent.trim()
         tempVal = []
+        limitArraySize(operatorContainer)
+
         switch(content){
             case '+':
                 isSecondValue = true
+                operatorContainer.push("+")
                 operatorInput = "+"
                 break;
             case '-':
                 isSecondValue = true
+                operatorContainer.push("-")
                 operatorInput = "-"
                 break;
             case '/':
                 isSecondValue = true
+                operatorContainer.push("/")
                 operatorInput = "/"
                 break;
             case '*':
                 isSecondValue = true
+                operatorContainer.push("*")
                 operatorInput = "*"
                 break;
             case '=':
                 isSecondValue = false
+                isEqual = true
                 operate(valueA,valueB,operatorInput)
                 break;
         }
-        if(isSecondValue) document.getElementById("operand").textContent = operatorInput
+
+        console.log(checkSecondVal())
+
+        if(isSecondValue){
+            document.getElementById("operand").textContent = operatorInput
+            if(checkSecondVal() === false){
+                operate(valueA,valueB,operatorContainer[0])
+                document.getElementById("numTwo").textContent = ''
+            } 
+        } 
     })
 })
 
@@ -119,17 +139,38 @@ function operate(valA, valB, operator){
     }else if (operator === '/'){
         result = divide(valA,valB)
     }
-    document.getElementById("result").textContent = result
+
+    if(!isEqual){
+        valueA = result
+        document.getElementById("numOne").textContent = result
+    }
+
+    if(isEqual){
+        isEqual = false
+        document.getElementById("result").textContent = result
+    }    
+    
 }
 
 const clear = () => {
     valueA = 0
-    valueB = 0 
+    valueB = 0
     tempVal = []
     operatorInput = ""     
     isSecondValue = false  
     document.getElementById("operand").textContent = operatorInput
-    document.getElementById("numTwo").textContent = `${valueB}`
-    document.getElementById("numOne").textContent = `${valueA}`
+    document.getElementById("numTwo").textContent = ''
+    document.getElementById("numOne").textContent = ''
     document.getElementById("result").textContent = ''
+}
+
+const checkSecondVal = () => {
+    if(document.getElementById("numTwo").textContent === '') return true
+    else return false
+}
+
+const limitArraySize = (arr = []) => {
+    if(arr.length >= 2){
+        return arr.shift()
+    }
 }
