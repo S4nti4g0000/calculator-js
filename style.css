@@ -1,5 +1,6 @@
 body{
     display: flex;
+    min-height: 99vh;
     background: rgb(145, 145, 145);
     justify-content: center;
     align-content: center;
@@ -7,6 +8,8 @@ body{
 
 #main-container {
     display: flex;
+    justify-content: center;
+    align-content: center;
     flex-direction: column;
 }
 
@@ -21,29 +24,35 @@ body{
     background: white;
     color: black;
     width: 260px;
-    height: 120px;
+    height: 160px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-#display div {
+.operators, .results{
     display: flex;
-    border: 1px black solid;
-    width: 30px;
-    height: 30px;
-    margin: auto;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 250px;
+}
+
+.operators div, .results div, #equal{
+    display: flex;
+    border: 1px rgb(152, 152, 152) solid;
+    border-radius: 4px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 2px;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#operand{
-    margin-left: auto;
-    margin-right: auto;
-}
-
 #equal{
     margin-left: auto;
+    border: 1px rgb(75, 75, 75) solid;
     margin-right: auto;
 }
 
