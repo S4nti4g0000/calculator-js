@@ -100,8 +100,6 @@ operands.forEach(button => {
                 break;
         }
 
-        console.log(checkSecondVal())
-
         if(isSecondValue){
             document.getElementById("operand").textContent = operatorInput
             if(checkSecondVal() === false){
@@ -137,7 +135,9 @@ function operate(valA, valB, operator){
     }else if (operator === '*'){
         result = multiply(valA,valB)
     }else if (operator === '/'){
-        result = divide(valA,valB)
+        result = divide(valA,valB).toFixed(3)
+    }else{
+        result = valA
     }
 
     if(!isEqual){
@@ -145,7 +145,7 @@ function operate(valA, valB, operator){
         document.getElementById("numOne").textContent = result
     }
 
-    if(isEqual){
+    if(isEqual && checkSecondVal() === false){
         isEqual = false
         document.getElementById("result").textContent = result
     }    
