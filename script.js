@@ -54,6 +54,17 @@ numbers.forEach(button => {
             case 'AC': 
                 clear()     
                 break;
+            case '+/-':     
+                if (isSecondValue) {
+                    valueB = changeSign(valueB);
+                    tempVal = [...`${valueB}`];
+                    document.getElementById("numTwo").textContent = `${valueB}`;
+                } else {
+                    valueA = changeSign(valueA);
+                    tempVal = [...`${valueA}`];
+                    document.getElementById("numOne").textContent = `${valueA}`;
+                }
+                break;
         }
         if(isSecondValue){
             valueB = +tempVal.join('')
@@ -135,7 +146,9 @@ function operate(valA, valB, operator){
     }else if (operator === '*'){
         result = multiply(valA,valB)
     }else if (operator === '/'){
-        result = divide(valA,valB).toFixed(3)
+        (valB !== 0) ? 
+        result = divide(valA,valB).toFixed(3) :
+        result = 'Error'
     }else{
         result = valA
     }
@@ -173,4 +186,9 @@ const limitArraySize = (arr = []) => {
     if(arr.length >= 2){
         return arr.shift()
     }
+}
+
+const changeSign = (val) => {
+    if (val === 0) return 0;
+    else return -val    
 }
