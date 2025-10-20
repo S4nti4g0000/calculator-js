@@ -22,6 +22,7 @@ body{
 
 #display {
     background: white;
+    border-radius: 15px 15px 0px 0px;
     color: black;
     width: 260px;
     height: 160px;
@@ -56,11 +57,11 @@ body{
     margin-right: auto;
 }
 
-#num-container {
-    width: 380px;
+#num-container, #lower-portion {
+    width: 200px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: start;
     gap: 0px;
     
 }
@@ -72,8 +73,16 @@ body{
     height: 65px;
     text-align: center;
     align-content: center;
-    color: white;
-    
+    color: white;    
+}
+
+#lower-portion button{
+    display: flex;     
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-content: center; 
+    width: 50px;
 }
 
 #num-container button:hover{
@@ -100,4 +109,12 @@ body{
     height: 60px;
     text-align: center;
     align-content: center;
+}
+
+.low-left {
+    border-radius: 0px 0px 0px 15px;
+}
+
+.low-right {
+    border-radius: 0px 0px 15px 0px;
 }
