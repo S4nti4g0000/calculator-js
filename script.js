@@ -6,6 +6,7 @@ let operatorContainer = []
 let operatorInput
 
 let isSecondValue = false
+let enableDecimal = true
 let isEqual = false
 
 const numDisplay = document.getElementById("display")
@@ -51,6 +52,12 @@ numbers.forEach(button => {
             case '9':
                 tempVal.push(9)
                 break;
+            case '.':
+                if(enableDecimal){
+                    tempVal.push('.')
+                    enableDecimal = false;
+                }            
+                break;                
             case 'AC': 
                 clear()     
                 break;
@@ -64,14 +71,14 @@ numbers.forEach(button => {
                     tempVal = [...`${valueA}`];
                     document.getElementById("numOne").textContent = `${valueA}`;
                 }
-                break;
+                break;            
         }
-        if(isSecondValue){
-            valueB = +tempVal.join('')
-            document.getElementById("numTwo").textContent = `${valueB}`
-        }else {
-            valueA = +tempVal.join('')
-            document.getElementById("numOne").textContent = `${valueA}`
+        if (isSecondValue) {
+            valueB = +tempVal.join('');
+            document.getElementById("numTwo").textContent = tempVal.join('');
+        } else {
+            valueA = +tempVal.join('');
+            document.getElementById("numOne").textContent = tempVal.join('');
         }
     })
 })
@@ -82,6 +89,8 @@ operands.forEach(button => {
         let content = tar.textContent.trim()
         tempVal = []
         limitArraySize(operatorContainer)
+
+        if(!enableDecimal) enableDecimal = true
 
         switch(content){
             case '+':
