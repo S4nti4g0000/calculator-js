@@ -8,11 +8,12 @@ let operatorInput
 let isSecondValue = false
 let enableDecimal = true
 let isEqual = false
+let resultDisplayed = false
 
 const numDisplay = document.getElementById("display")
 const numbers = document.getElementById("num-container").querySelectorAll("button")
 const operands = document.getElementById("op-container").querySelectorAll("button")
-
+const backspace = document.getElementById("backspace")
 
 
 numbers.forEach(button => {
@@ -130,6 +131,39 @@ operands.forEach(button => {
     })
 })
 
+
+
+backspace.addEventListener("click", () => {
+
+    if(isSecondValue){
+        valueB = deleteDigits(valueB)
+        document.getElementById("numTwo").textContent = tempVal.join('')
+        if(valueB === ''){
+            isSecondValue = false
+            operatorInput = ''
+            document.getElementById("operand").textContent = operatorInput
+        }
+    }else{
+        valueA = deleteDigits(valueA)
+        document.getElementById("numOne").textContent = tempVal.join('')
+    }
+
+
+    if(resultDisplayed){
+        clear()
+        resultDisplayed = false
+    } 
+    
+})
+
+const deleteDigits = (val) => {
+    
+    tempVal = val.toString().split('').map(Number)
+    tempVal.pop()
+    return tempVal.join('')
+    
+}
+
 const sum = (...args) => {
     return args.reduce((acc, value) => acc + value, 0)
 }
@@ -169,6 +203,7 @@ function operate(valA, valB, operator){
 
     if(isEqual && checkSecondVal() === false){
         isEqual = false
+        resultDisplayed = true
         document.getElementById("result").textContent = result
     }    
     
@@ -201,3 +236,4 @@ const changeSign = (val) => {
     if (val === 0) return 0;
     else return -val    
 }
+
